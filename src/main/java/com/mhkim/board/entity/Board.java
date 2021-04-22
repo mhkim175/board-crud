@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import lombok.Builder;
@@ -22,9 +24,9 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString
+@DynamicUpdate
 @Entity
-@Table(name = "boards")
-public class Board {
+public class Board extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -32,13 +34,10 @@ public class Board {
     private String userName;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
 
     @Builder
     @PersistenceConstructor
-    public Board(Long boardId, String userName, String title, String content, LocalDateTime createdAt,
-            LocalDateTime modifiedAt) {
+    public Board(Long boardId, String userName, String title, String content) {
 
         checkArgument(isNotEmpty(userName), "username must be provided.");
         checkArgument(isNotEmpty(title), "title must be provided.");
@@ -48,8 +47,6 @@ public class Board {
         this.userName = userName;
         this.title = title;
         this.content = content;
-        this.createdAt = defaultIfNull(createdAt, now());
-        this.modifiedAt = defaultIfNull(modifiedAt, now());
     }
 
     public void setBoardUpdate(String title, String content) {

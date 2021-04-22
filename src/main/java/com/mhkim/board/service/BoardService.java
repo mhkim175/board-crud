@@ -20,7 +20,7 @@ public class BoardService {
     public List<Board> getBoardList() {
         return boardRepository.findAll();
     }
-    
+
     public Optional<Board> getBoard(Long boardId) {
         return boardRepository.findById(boardId);
     }
@@ -33,12 +33,12 @@ public class BoardService {
                 .content(content).build();
         return Optional.of(boardRepository.save(board));
     }
-    
+
     @Transactional
     public Optional<Board> updateBoard(Long boardId, String title, String content) {
         return getBoard(boardId).map(board -> {
             board.setBoardUpdate(title, content);
-            return boardRepository.save(board);
+            return board;
         });
     }
 

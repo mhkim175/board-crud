@@ -2,7 +2,6 @@ package com.mhkim.board;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -36,9 +35,7 @@ public class BoardServiceTest {
         String userName = "mhkim";
         String title = "title";
         String content = "content";
-        LocalDateTime createdAt = null;
-        LocalDateTime modifiedAt = null;
-        board = new Board(boardId, userName, title, content, createdAt, modifiedAt);
+        board = new Board(boardId, userName, title, content);
     }
 
     @Test
