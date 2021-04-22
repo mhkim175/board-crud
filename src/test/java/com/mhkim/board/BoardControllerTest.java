@@ -7,7 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.mhkim.board.controller.dto.BoardDto;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mhkim.board.controller.dto.BoardAddDto;
+import com.mhkim.board.controller.dto.BoardUpdateDto;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -36,7 +37,7 @@ class BoardControllerTest {
     @Test
     @Order(1)
     void 게시글_등록() throws Exception {
-        BoardDto.Add param = new BoardDto.Add();
+        BoardAddDto param = new BoardAddDto();
         param.setUserName("addmhkim");
         param.setTitle("title");
         param.setContent("content");
@@ -72,7 +73,7 @@ class BoardControllerTest {
     @Test
     @Order(4)
     void 게시글_수정() throws Exception{
-        BoardDto.Mod param = new BoardDto.Mod();
+        BoardUpdateDto param = new BoardUpdateDto();
         param.setTitle("updatedtitle");
         param.setContent("updatedcontent");
 
