@@ -1,4 +1,4 @@
-package com.mhkim.board.entity;
+package com.mhkim.board.entity.board;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.time.LocalDateTime.now;
@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
+import com.mhkim.board.entity.BaseTimeEntity;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.PersistenceConstructor;
 

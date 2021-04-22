@@ -1,4 +1,4 @@
-package com.mhkim.board.controller;
+package com.mhkim.board.controller.board;
 
 import static com.mhkim.board.common.ApiResult.ok;
 import static java.util.stream.Collectors.toList;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.mhkim.board.advice.exception.CDataNotFoundException;
 import com.mhkim.board.common.ApiResult;
-import com.mhkim.board.controller.dto.BoardDto;
-import com.mhkim.board.service.BoardService;
+import com.mhkim.board.controller.board.dto.BoardDto;
+import com.mhkim.board.service.board.BoardService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Api(tags = { "1. Board" })
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 public class BoardController {
 
     private final BoardService boardService;

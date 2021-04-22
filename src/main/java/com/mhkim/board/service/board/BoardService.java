@@ -1,4 +1,4 @@
-package com.mhkim.board.service;
+package com.mhkim.board.service.board;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mhkim.board.entity.Board;
-import com.mhkim.board.repository.BoardRepository;
+import com.mhkim.board.entity.board.Board;
+import com.mhkim.board.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
 

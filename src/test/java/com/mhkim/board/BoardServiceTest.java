@@ -13,8 +13,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.mhkim.board.entity.Board;
-import com.mhkim.board.service.BoardService;
+import com.mhkim.board.entity.board.Board;
+import com.mhkim.board.service.board.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
 

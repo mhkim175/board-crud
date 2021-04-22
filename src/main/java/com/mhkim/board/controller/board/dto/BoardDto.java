@@ -1,8 +1,8 @@
-package com.mhkim.board.controller.dto;
+package com.mhkim.board.controller.board.dto;
 
 import org.springframework.beans.BeanUtils;
 
-import com.mhkim.board.entity.Board;
+import com.mhkim.board.entity.board.Board;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
