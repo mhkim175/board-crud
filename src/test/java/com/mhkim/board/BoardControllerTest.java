@@ -37,7 +37,6 @@ class BoardControllerTest {
     @Order(1)
     void 게시글_등록() throws Exception {
         BoardDto.Add param = new BoardDto.Add();
-        param.setUserName("addmhkim");
         param.setTitle("title");
         param.setContent("content");
 

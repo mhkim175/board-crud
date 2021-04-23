@@ -44,8 +44,7 @@ public class BoardServiceTest {
     @Test
     @Order(1)
     void 게시글_등록() {
-        Board boardResult = boardService.addBoard(board.getTitle(), board.getContent(), user.getUserId())
-                .orElse(null);
+        Board boardResult = boardService.addBoard(board.getTitle(), board.getContent(), user.getUserId());
         assertThat(boardResult).isNotNull();
         assertThat(boardResult.getTitle()).isEqualTo(board.getTitle());
         assertThat(boardResult.getContent()).isEqualTo(board.getContent());
@@ -73,7 +72,7 @@ public class BoardServiceTest {
     void 게시글_수정() {
         String title = "updatedtitle";
         String content = "updatedcontent";
-        Board boardResult = boardService.updateBoard(1L, title, content).orElse(null);
+        Board boardResult = boardService.updateBoard(1L, title, content);
         assertThat(boardResult).isNotNull();
         log.info("Updated Board: {}", boardResult);
     }

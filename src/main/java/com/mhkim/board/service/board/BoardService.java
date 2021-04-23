@@ -31,7 +31,7 @@ public class BoardService {
     }
 
     @Transactional
-    public Optional<Board> addBoard(String title, String content, Long userId) {
+    public Board addBoard(String title, String content, Long userId) {
         return userRepository.findById(userId)
                 .map(user -> {
                     Board board = Board.builder()
@@ -39,21 +39,26 @@ public class BoardService {
                             .content(content)
                             .user(user)
                             .build();
-                    return Optional.of(boardRepository.save(board));
-                }).orElseThrow(() -> new CDataNotFoundException());
+                    return boardRepository.save(board);
+                }).orElseThrow(() -> new CDataNotFoundException("User not found"));
     }
 
     @Transactional
-    public Optional<Board> updateBoard(Long boardId, String title, String content) {
-        return getBoard(boardId).map(board -> {
-            board.setBoardUpdate(title, content);
-            return board;
-        });
+    public Board updateBoard(Long boardId, String title, String content) {
+        return getBoard(boardId)
+                .map(board -> {
+                    board.setBoardUpdate(title, content);
+                    return board;
+                }).orElseThrow(() -> new CDataNotFoundException("Board not found"));
     }
 
     @Transactional
-    public void deleteBoard(Long boardId) {
-        boardRepository.deleteById(boardId);
+    public Board deleteBoard(Long boardId) {
+        return getBoard(boardId)
+                .map(board -> {
+                    boardRepository.deleteById(board.getBoardId());
+                    return board;
+                }).orElseThrow(() -> new CDataNotFoundException("Board not found"));
     }
 
 }

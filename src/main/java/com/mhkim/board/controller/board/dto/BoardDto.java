@@ -1,5 +1,6 @@
 package com.mhkim.board.controller.board.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mhkim.board.entity.user.User;
 import org.springframework.beans.BeanUtils;
 
@@ -25,6 +26,7 @@ public class BoardDto {
         private String content;
 
         @ApiModelProperty(value = "작성자 정보")
+        @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
         private User user;
 
         public Response(Board source) {
