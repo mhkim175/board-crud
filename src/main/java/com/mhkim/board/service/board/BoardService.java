@@ -3,6 +3,9 @@ package com.mhkim.board.service.board;
 import java.util.List;
 import java.util.Optional;
 
+import com.mhkim.board.advice.exception.CDataNotFoundException;
+import com.mhkim.board.repository.user.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,11 +14,13 @@ import com.mhkim.board.repository.board.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
     public List<Board> getBoardList() {
         return boardRepository.findAll();
@@ -26,12 +31,16 @@ public class BoardService {
     }
 
     @Transactional
-    public Optional<Board> addBoard(String userName, String title, String content) {
-        Board board = Board.builder()
-                .userName(userName)
-                .title(title)
-                .content(content).build();
-        return Optional.of(boardRepository.save(board));
+    public Optional<Board> addBoard(String title, String content, Long userId) {
+        return userRepository.findById(userId)
+                .map(user -> {
+                    Board board = Board.builder()
+                            .title(title)
+                            .content(content)
+                            .user(user)
+                            .build();
+                    return Optional.of(boardRepository.save(board));
+                }).orElseThrow(() -> new CDataNotFoundException());
     }
 
     @Transactional

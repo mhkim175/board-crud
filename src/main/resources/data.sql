@@ -1,0 +1,5 @@
+insert into user(email, name) values ('user1111@test.com', 'user1111')
+insert into user(email, name) values ('user2222@test.com', 'user2222')
+insert into user(email, name) values ('user3333@test.com', 'user3333')
+insert into user(email, name) values ('user4444@test.com', 'user4444')
+insert into user(email, name) values ('user5555@test.com', 'user5555')

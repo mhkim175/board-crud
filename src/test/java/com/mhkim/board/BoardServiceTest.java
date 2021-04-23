@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import com.mhkim.board.entity.user.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -28,6 +29,7 @@ public class BoardServiceTest {
     private BoardService boardService;
 
     private Board board;
+    private User user;
 
     @BeforeAll
     void setUp() {
@@ -35,16 +37,16 @@ public class BoardServiceTest {
         String userName = "mhkim";
         String title = "title";
         String content = "content";
-        board = new Board(boardId, userName, title, content);
+        user = User.builder().userId(1L).build();
+        board = new Board(boardId, title, content, user);
     }
 
     @Test
     @Order(1)
     void 게시글_등록() {
-        Board boardResult = boardService.addBoard(board.getUserName(), board.getTitle(), board.getContent())
+        Board boardResult = boardService.addBoard(board.getTitle(), board.getContent(), user.getUserId())
                 .orElse(null);
         assertThat(boardResult).isNotNull();
-        assertThat(boardResult.getUserName()).isEqualTo(board.getUserName());
         assertThat(boardResult.getTitle()).isEqualTo(board.getTitle());
         assertThat(boardResult.getContent()).isEqualTo(board.getContent());
         log.info("Board: {}", boardResult);

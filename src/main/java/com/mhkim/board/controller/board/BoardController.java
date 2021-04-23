@@ -17,7 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
-@Api(tags = { "1. Board" })
+@Api(tags = {"1. Board"})
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
@@ -40,11 +40,11 @@ public class BoardController {
                 .map(BoardDto.Response::new)
                 .orElseThrow(CDataNotFoundException::new), HttpStatus.OK);
     }
-    
+
     @ApiOperation(value = "게시글 추가")
     @PostMapping(value = "/board")
     public ApiResult<BoardDto.Response> addBoard(@RequestBody BoardDto.Add param) {
-        return ok(boardService.addBoard(param.getUserName(), param.getTitle(), param.getContent())
+        return ok(boardService.addBoard(param.getTitle(), param.getContent(), param.getUserId())
                 .map(BoardDto.Response::new)
                 .orElseThrow(CDataNotFoundException::new), HttpStatus.CREATED);
     }

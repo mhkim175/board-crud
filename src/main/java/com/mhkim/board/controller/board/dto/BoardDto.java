@@ -1,5 +1,6 @@
 package com.mhkim.board.controller.board.dto;
 
+import com.mhkim.board.entity.user.User;
 import org.springframework.beans.BeanUtils;
 
 import com.mhkim.board.entity.board.Board;
@@ -17,14 +18,14 @@ public class BoardDto {
         @ApiModelProperty(value = "게시글 ID")
         private Long boardId;
 
-        @ApiModelProperty(value = "글쓴이")
-        private String userName;
-
         @ApiModelProperty(value = "제목")
         private String title;
 
         @ApiModelProperty(value = "내용")
         private String content;
+
+        @ApiModelProperty(value = "작성자 정보")
+        private User user;
 
         public Response(Board source) {
             BeanUtils.copyProperties(source, this);
@@ -36,14 +37,14 @@ public class BoardDto {
     @Setter
     public static class Add {
 
-        @ApiModelProperty(value = "글쓴이", required = true)
-        private String userName;
-
         @ApiModelProperty(value = "제목", required = true)
         private String title;
 
         @ApiModelProperty(value = "내용", required = true)
         private String content;
+
+        @ApiModelProperty(value = "작성자 아이디", required = true)
+        private Long userId;
 
     }
 
